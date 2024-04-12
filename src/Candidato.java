@@ -24,12 +24,14 @@ public class Candidato {
         String nomeCompleto = this.getNome() + " " + this.getSobrenome();
         String niver = this.getDtNasc();
 
-        String profs = "";
+        String profs = "[";
 
         for(String s : this.getProfissoes()){
-            profs = profs + s + " ";
+            profs = profs + s + ", ";
         }
 
+        profs = profs.substring(0, profs.length() -2);
+        profs = profs + "]";
 
         return nomeCompleto + sep + niver + sep + this.getCpf() + sep + profs;
     }
