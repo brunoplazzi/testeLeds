@@ -30,8 +30,7 @@ public class Candidato {
             profs = profs + s + ", ";
         }
 
-        profs = profs.substring(0, profs.length() -2);
-        profs = profs + "]";
+        profs = profs.substring(0, profs.length() -2) + "]";
 
         return nomeCompleto + sep + niver + sep + this.getCpf() + sep + profs;
     }

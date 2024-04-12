@@ -21,11 +21,13 @@ public class Concurso {
         String print = this.getOrgao() + sep + this.getEdital() + sep + this.getCodigo() + sep;
 
 
-        String vags = "";
+        String vags = "[";
 
         for(String s : this.getVagas()){
-            vags = vags + s + " ";
+            vags = vags + s + ", ";
         }
+
+        vags = vags.substring(0, vags.length() - 2) + "]";
 
         return print + vags;
     }

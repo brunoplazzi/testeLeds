@@ -50,11 +50,9 @@ public class Extrator {
         return candidatos;
     }
 
-    ArrayList<Concurso> extrairConcursos(String nomeArq){
+    ArrayList<Concurso> extrairConcursos(String nomeArquivo){
 
         ArrayList<Concurso> concursos = new ArrayList<>();
-
-        String nomeArquivo = nomeArq;
 
         try{
 
@@ -71,7 +69,15 @@ public class Extrator {
                 String codigo = tokens[2].trim();
                 String[] vagas = Arrays.copyOfRange(tokens, 3, tokens.length);
 
-                Concurso concurso = new Concurso(orgao, edital, codigo, vagas);
+                String vaga = String.join(" ", vagas);
+
+                String conteudoVaga = vaga.substring(1, vaga.length() - 1);
+                String[] elementos = conteudoVaga.split(", ");
+
+                String[] vetor = new String[elementos.length];
+                System.arraycopy(elementos, 0, vetor, 0, elementos.length);
+
+                Concurso concurso = new Concurso(orgao, edital, codigo, vetor);
                 concursos.add(concurso);
             }
 
