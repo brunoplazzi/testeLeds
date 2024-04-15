@@ -69,11 +69,39 @@ public class Main {
         return compCon;
     }
 
-    public static ArrayList<Candidato> candidatosCompativeis(String codigo){
+    public static ArrayList<Candidato> candidatosCompativeis(String codigo, ArrayList<Candidato> listaCandidatos, ArrayList<Concurso> listaConcursos){
 
         ArrayList<Candidato> compCan = new ArrayList<>();
 
-        System.out.println(" to implement");
+        //achar o concurso na lista de concuros
+        Concurso conc = null;
+
+        for(Concurso c : listaConcursos){
+
+            if(c.getCodigo().equals(codigo)){
+                conc = c;
+
+            }
+        }
+
+        for(int i = 0; i< conc.getVagas().length; i++){
+
+            //para cada vaga
+            for(Candidato cand : listaCandidatos){
+
+                //pra cada profissao
+                for(int j = 0;j < cand.getProfissoes().length; j++){
+
+                    //se for compativel
+                    if(cand.getProfissoes()[j].equals(conc.getVagas()[i])){
+                        compCan.add(cand);
+                    }
+
+                }
+
+            }
+        }
+
         return compCan;
     }
 
@@ -113,9 +141,12 @@ public class Main {
             System.out.printf("Digite o código do concurso: ");
             String codigo = s.nextLine();
 
-            ArrayList<Candidato> compCan = candidatosCompativeis(codigo);
+            ArrayList<Candidato> compCan = candidatosCompativeis(codigo, listaCandidatos, listaConcursos);
 
             //fazer funcao de printar listas e passar codigo como parametro
+            for(Candidato c : compCan){
+                System.out.println(c);
+            }
 
         } else if (op == 0) {
             System.out.println("FIM DO PROGRAMA");
