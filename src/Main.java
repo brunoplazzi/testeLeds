@@ -33,21 +33,36 @@ public class Main {
         ArrayList<Concurso> compCon = new ArrayList<>();
 
         //achar o candidato na lista de candidatos
-        Candidato cand;
+        Candidato cand = null;
         for(Candidato c : listaCandidatos){
 
             if(c.getCpf().equals(cpf)){
                 cand = c;
 
-            }else{
-                return null;
             }
         }
 
-
         //pra cada preferencia na sua lista de profissoes
-        //procurar concurso na lista de concursos, mas tomar cuidado pra não adicionar 2x o mesmo
-        //adicionar no compCon
+        for(int i = 0; i< cand.getProfissoes().length; i++){
+
+            //para cada concurso
+            for(Concurso conc : listaConcursos){
+
+
+                //pra cada vaga
+                for(int j = 0;j < conc.getVagas().length; j++){
+
+                    //se for compativel
+                    if(conc.getVagas()[j].equals(cand.getProfissoes()[i])){
+                        compCon.add(conc);
+                    }
+
+                }
+
+            }
+        }
+
+        //falta tratar repetidos
 
 
 
@@ -87,6 +102,9 @@ public class Main {
             ArrayList<Concurso> compCon =  concursosCompativeis(cpf, listaCandidatos, listaConcursos);
 
             //fazer funcao de printar listas e passar compativeis como parametro
+            for(Concurso c : compCon){
+                System.out.println(c);
+            }
 
 
         }else if( op == 2){
